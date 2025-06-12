@@ -1,0 +1,131 @@
+<!-- _includes/universal-widget.html -->
+<div class="widget-container{% if include.layout == 'horizontal' %} layout-horizontal{% endif %}">
+  <div class="widget-wrapper" 
+       data-primary="{{ include.primary_color | default: '#00FFED' }}" 
+       data-secondary="{{ include.secondary_color | default: '#007acc' }}">
+    
+    {% if include.media_type and include.media_type != 'none' and include.media_url %}
+      <div class="widget-media">
+        {% if include.media_type == 'image' %}
+          <img src="{{ include.media_url }}" alt="{{ include.title | default: 'Widget Image' }}" />
+        {% elsif include.media_type == 'video' %}
+          <video controls>
+            <source src="{{ include.media_url }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        {% elsif include.media_type == 'audio' %}
+          <audio controls>
+            <source src="{{ include.media_url }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if include.layout == 'horizontal' %}<div>{% endif %}
+    
+    <h3 class="widget-title">{{ include.title | default: "🔥 Amazing Offer 🔥" }}</h3>
+    
+    {% if include.subtitle %}
+      <p class="widget-subtitle">
+        <strong>{{ include.subtitle }}</strong>
+      </p>
+    {% endif %}
+    
+    {% if include.description %}
+      <p class="widget-description">{{ include.description }}</p>
+    {% endif %}
+    
+    {% if include.price %}
+      <div class="widget-price">{{ include.price }}</div>
+    {% endif %}
+    
+    {% if include.rating %}
+      <div class="widget-rating">
+        <span class="stars">
+          {% assign rating_floor = include.rating | floor %}
+          {% for i in (1..rating_floor) %}★{% endfor %}
+          {% assign remaining = 5 | minus: rating_floor %}
+          {% for i in (1..remaining) %}☆{% endfor %}
+        </span>
+        <span class="rating-text">({{ include.rating }})</span>
+      </div>
+    {% endif %}
+    
+    {% if include.list_items %}
+      <ul class="widget-list">
+        {% assign items = include.list_items | split: '|' %}
+        {% for item in items %}
+          <li>{{ item | strip }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+    <div class="widget-buttons">
+      {% if include.button1_text %}
+        <a href="{{ include.button1_url | default: '#' }}" 
+           class="widget-button" 
+           target="_blank" 
+           rel="noopener">
+          {{ include.button1_text }}
+        </a>
+      {% endif %}
+      
+      {% if include.button2_text %}
+        <a href="{{ include.button2_url | default: '#' }}" 
+           class="widget-button widget-button-secondary" 
+           target="_blank" 
+           rel="noopener">
+          {{ include.button2_text }}
+        </a>
+      {% endif %}
+    </div>
+    
+    {% if include.note %}
+      <p class="widget-note">{{ include.note }}</p>
+    {% endif %}
+    
+    {% if include.layout == 'horizontal' %}</div>{% endif %}
+  </div>
+</div>
+
+<style>
+/* Dynamic color styling */
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"] {
+  background: linear-gradient(#f0f8ff, #f0f8ff) padding-box,
+              linear-gradient(135deg, 
+                {{ include.primary_color | default: '#00FFED' }}cc 0%,
+                {{ include.secondary_color | default: '#007acc' }} 50%,
+                {{ include.primary_color | default: '#00FFED' }}cc 100%) border-box;
+}
+
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"]::before {
+  background: linear-gradient(135deg, 
+    {{ include.primary_color | default: '#00FFED' }}4d 0%, 
+    {{ include.secondary_color | default: '#007acc' }}40 50%, 
+    {{ include.primary_color | default: '#00FFED' }}4d 100%);
+}
+
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"] .widget-title {
+  background: linear-gradient(135deg, 
+    {{ include.primary_color | default: '#00FFED' }}, 
+    {{ include.secondary_color | default: '#007acc' }});
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"] .widget-button {
+  background: linear-gradient(135deg, 
+    {{ include.primary_color | default: '#00FFED' }} 0%, 
+    {{ include.secondary_color | default: '#007acc' }} 100%);
+}
+
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"] .widget-button-secondary {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+}
+
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"] .widget-list li::marker {
+  color: {{ include.primary_color | default: '#00FFED' }};
+}
+</style>
