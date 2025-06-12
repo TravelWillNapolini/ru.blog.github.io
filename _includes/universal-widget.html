@@ -88,3 +88,44 @@
     {% if include.layout == 'horizontal' %}</div>{% endif %}
   </div>
 </div>
+
+<style>
+/* Dynamic color styling */
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"] {
+  background: linear-gradient(#f0f8ff, #f0f8ff) padding-box,
+              linear-gradient(135deg, 
+                {{ include.primary_color | default: '#00FFED' }}cc 0%,
+                {{ include.secondary_color | default: '#007acc' }} 50%,
+                {{ include.primary_color | default: '#00FFED' }}cc 100%) border-box;
+}
+
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"]::before {
+  background: linear-gradient(135deg, 
+    {{ include.primary_color | default: '#00FFED' }}4d 0%, 
+    {{ include.secondary_color | default: '#007acc' }}40 50%, 
+    {{ include.primary_color | default: '#00FFED' }}4d 100%);
+}
+
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"] .widget-title {
+  background: linear-gradient(135deg, 
+    {{ include.primary_color | default: '#00FFED' }}, 
+    {{ include.secondary_color | default: '#007acc' }});
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"] .widget-button {
+  background: linear-gradient(135deg, 
+    {{ include.primary_color | default: '#00FFED' }} 0%, 
+    {{ include.secondary_color | default: '#007acc' }} 100%);
+}
+
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"] .widget-button-secondary {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+}
+
+.widget-wrapper[data-primary="{{ include.primary_color | default: '#00FFED' }}"] .widget-list li::marker {
+  color: {{ include.primary_color | default: '#00FFED' }};
+}
+</style>
