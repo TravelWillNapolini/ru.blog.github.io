@@ -213,3 +213,22 @@ fallback:
 
 
 ---
+
+{% include universal-widget.html
+  title="📚 Free E-book Download"
+  subtitle="Master Digital Marketing in 30 Days"
+  description="Get our comprehensive guide with proven strategies, real case studies, and actionable tips."
+  media_type="image"
+  media_url="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=250&fit=crop"
+  list_items="Complete step-by-step guide|Real-world case studies|30-day action plan|Bonus templates included"
+  button1_text="📥 Download Now"
+  button1_url="#"
+  button2_text="Learn More "
+  button2_url="#"
+  note="PDF format, 50 pages of expert insights"
+  layout="vertical"
+  primary_color="#00ffed"
+  secondary_color="#007acc"
+%}
+
+---
